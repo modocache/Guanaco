@@ -1,0 +1,5 @@
+language: objective-c
+
+script:
+  - "xcodebuild -workspace Guanaco.xcworkspace -scheme Guanaco-iOS test"
+  - "xcodebuild -workspace Guanaco.xcworkspace -scheme Guanaco-OSX test"
