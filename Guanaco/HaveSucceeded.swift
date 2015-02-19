@@ -63,11 +63,14 @@ public func haveSucceeded<T>(matcher: NonNilMatcherFunc<T>) -> NonNilMatcherFunc
 // MARK: Private
 
 private func matchesSuccessfulExpression<T, U>(actualExpression: Expression<Result<T, U>>, failureMessage: FailureMessage, closure: (Expression<T>, FailureMessage) -> Bool) -> Bool {
+  failureMessage.postfixMessage = "have succeeded"
   if let result = actualExpression.evaluate() {
     switch result {
     case .Success(let box):
       let successfulExpression = Expression(expression: { box.unbox }, location: actualExpression.location)
-      return closure(successfulExpression, failureMessage)
+      let matched = closure(successfulExpression, failureMessage)
+      failureMessage.postfixMessage = "have succeeded, and value to \(failureMessage.postfixMessage)"
+      return matched
     case .Failure:
       return false
     }
