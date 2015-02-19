@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA5023941A969B0B004175D7 /* HaveSucceeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5023931A969B0B004175D7 /* HaveSucceeded.swift */; };
+		DA5023951A969B0B004175D7 /* HaveSucceeded.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5023931A969B0B004175D7 /* HaveSucceeded.swift */; };
+		DA5023971A969B9E004175D7 /* HaveFailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5023961A969B9E004175D7 /* HaveFailed.swift */; };
+		DA5023981A969B9E004175D7 /* HaveFailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5023961A969B9E004175D7 /* HaveFailed.swift */; };
 		DA59142F1A94466E00AED74C /* HaveSucceededSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA59142E1A94466E00AED74C /* HaveSucceededSpec.swift */; };
 		DA5914311A94469500AED74C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5914301A94469500AED74C /* Quick.framework */; };
 		DA5914331A94469900AED74C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5914321A94469900AED74C /* Nimble.framework */; };
 		DA5914351A944AE100AED74C /* AssertionMessageRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5914341A944AE100AED74C /* AssertionMessageRecorder.swift */; };
 		DA5914371A944C4800AED74C /* HaveFailedSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5914361A944C4800AED74C /* HaveFailedSpec.swift */; };
-		DA59143A1A944C9B00AED74C /* Guanaco.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBD4021A94415C00BA07BE /* Guanaco.swift */; };
 		DA59143F1A944C9B00AED74C /* Guanaco.h in Headers */ = {isa = PBXBuildFile; fileRef = DACBD3EB1A94404800BA07BE /* Guanaco.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA59144A1A944CA900AED74C /* AssertionMessageRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5914341A944AE100AED74C /* AssertionMessageRecorder.swift */; };
 		DA59144B1A944CA900AED74C /* HaveFailedSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5914361A944C4800AED74C /* HaveFailedSpec.swift */; };
@@ -24,7 +27,6 @@
 		DA59146B1A9450A100AED74C /* Guanaco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA5914441A944C9B00AED74C /* Guanaco.framework */; };
 		DACBD3EC1A94404800BA07BE /* Guanaco.h in Headers */ = {isa = PBXBuildFile; fileRef = DACBD3EB1A94404800BA07BE /* Guanaco.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DACBD3F21A94404800BA07BE /* Guanaco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACBD3E61A94404800BA07BE /* Guanaco.framework */; };
-		DACBD4031A94415C00BA07BE /* Guanaco.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBD4021A94415C00BA07BE /* Guanaco.swift */; };
 		DACBD4051A94417200BA07BE /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACBD4041A94417200BA07BE /* Nimble.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		DACBD4071A94430F00BA07BE /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACBD4061A94430F00BA07BE /* LlamaKit.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA5023931A969B0B004175D7 /* HaveSucceeded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaveSucceeded.swift; sourceTree = "<group>"; };
+		DA5023961A969B9E004175D7 /* HaveFailed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaveFailed.swift; sourceTree = "<group>"; };
 		DA59142E1A94466E00AED74C /* HaveSucceededSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaveSucceededSpec.swift; sourceTree = "<group>"; };
 		DA5914301A94469500AED74C /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Guanaco-arlsxeqrahiqagdafwumtpvcbvkl/Build/Products/Debug/Quick.framework"; sourceTree = "<group>"; };
 		DA5914321A94469900AED74C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../External/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
@@ -64,7 +68,6 @@
 		DACBD3EB1A94404800BA07BE /* Guanaco.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Guanaco.h; sourceTree = "<group>"; };
 		DACBD3F11A94404800BA07BE /* GuanacoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuanacoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACBD3F71A94404800BA07BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DACBD4021A94415C00BA07BE /* Guanaco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guanaco.swift; sourceTree = "<group>"; };
 		DACBD4041A94417200BA07BE /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../External/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
 		DACBD4061A94430F00BA07BE /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = "../External/LlamaKit/build/Debug-iphoneos/LlamaKit.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,7 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				DACBD3EB1A94404800BA07BE /* Guanaco.h */,
-				DACBD4021A94415C00BA07BE /* Guanaco.swift */,
+				DA5023931A969B0B004175D7 /* HaveSucceeded.swift */,
+				DA5023961A969B9E004175D7 /* HaveFailed.swift */,
 				DACBD3E91A94404800BA07BE /* Supporting Files */,
 			);
 			path = Guanaco;
@@ -343,7 +347,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA59143A1A944C9B00AED74C /* Guanaco.swift in Sources */,
+				DA5023981A969B9E004175D7 /* HaveFailed.swift in Sources */,
+				DA5023951A969B0B004175D7 /* HaveSucceeded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +366,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DACBD4031A94415C00BA07BE /* Guanaco.swift in Sources */,
+				DA5023971A969B9E004175D7 /* HaveFailed.swift in Sources */,
+				DA5023941A969B0B004175D7 /* HaveSucceeded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

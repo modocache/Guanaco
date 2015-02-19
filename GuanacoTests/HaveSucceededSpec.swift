@@ -21,16 +21,16 @@ class HaveSucceededSpec: QuickSpec {
           expect(success("tumblr for clowns")).to(haveSucceeded())
         }
 
-        context("and an expected value is specified") {
-          it("fails if the result doesn't have that value") {
+        context("and a matcher is specified") {
+          it("fails if the result's value doesn't match") {
             let message = assertionMessage {
-              expect(success("runkeeper for recipies")).to(haveSucceeded("seamless for dread"))
+              expect(success("runkeeper for recipies")).to(haveSucceeded(equal("seamless for dread")))
             }
-            expect(message).to(equal("expected to have succeeded with a value of seamless for dread, got <Success: runkeeper for recipies>"))
+            expect(message).to(equal("expected to equal <seamless for dread>, got <Success: runkeeper for recipies>"))
           }
 
-          it("succeeds if the result has that value") {
-            expect(success("github for pizza")).to(haveSucceeded("github for pizza"))
+          it("succeeds if the result's value matches") {
+            expect(success([1, 2, 3])).to(haveSucceeded(contain(2)))
           }
         }
       }

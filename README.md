@@ -7,7 +7,10 @@ Nimble matchers for LlamaKit.
 ```swift
 let result = success("Huzzah!")
 expect(result).to(haveSucceeded())
-expect(result).to(haveSucceeded("Huzzah!"))
+expect(result).to(haveSucceeded(equal("Huzzah!")))
+
+let numbers = success([1, 2, 3])
+expect(numbers).to(haveSucceeded(contain(2)))
 ```
 
 ```swift
