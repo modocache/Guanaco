@@ -7,8 +7,8 @@ import LlamaKit
   A Nimble matcher that succeeds when the actual value
   is a successful result.
 */
-public func haveSucceeded<T>() -> MatcherFunc<Result<T, NSError>> {
-  return MatcherFunc { actualExpression, failureMessage in
+public func haveSucceeded<T, U>() -> NonNilMatcherFunc<Result<T, U>> {
+  return NonNilMatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have succeeded"
     if let result = actualExpression.evaluate() {
       return result.isSuccess
@@ -24,12 +24,8 @@ public func haveSucceeded<T>() -> MatcherFunc<Result<T, NSError>> {
 
   :param: matcher The matcher to run against the successful value.
 */
-public func haveSucceeded<T>(matcher: MatcherFunc<T>) -> MatcherFunc<Result<T, NSError>> {
-  return MatcherFunc { actualExpression, failureMessage in
-    return matchesSuccessfulExpression(actualExpression, failureMessage) { successfulExpression, failureMessage in
-      return matcher.matches(successfulExpression, failureMessage: failureMessage)
-    }
-  }
+public func haveSucceeded<T, U>(matcher: MatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
+  return haveSucceededMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
 }
 
 /**
@@ -38,12 +34,8 @@ public func haveSucceeded<T>(matcher: MatcherFunc<T>) -> MatcherFunc<Result<T, N
 
   :param: matcher The matcher to run against the successful value.
 */
-public func haveSucceeded<T>(matcher: FullMatcherFunc<T>) -> FullMatcherFunc<Result<T, NSError>> {
-  return FullMatcherFunc { actualExpression, failureMessage, _ in
-    return matchesSuccessfulExpression(actualExpression, failureMessage) { successfulExpression, failureMessage in
-      return matcher.matches(successfulExpression, failureMessage: failureMessage)
-    }
-  }
+public func haveSucceeded<T, U>(matcher: FullMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
+  return haveSucceededMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
 }
 
 /**
@@ -52,29 +44,28 @@ public func haveSucceeded<T>(matcher: FullMatcherFunc<T>) -> FullMatcherFunc<Res
 
   :param: matcher The matcher to run against the successful value.
 */
-public func haveSucceeded<T>(matcher: NonNilMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, NSError>> {
-  return NonNilMatcherFunc { actualExpression, failureMessage in
-    return matchesSuccessfulExpression(actualExpression, failureMessage) { successfulExpression, failureMessage in
-      return matcher.matches(successfulExpression, failureMessage: failureMessage)
-    }
-  }
+public func haveSucceeded<T, U>(matcher: NonNilMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
+  return haveSucceededMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
 }
 
 // MARK: Private
 
-private func matchesSuccessfulExpression<T, U>(actualExpression: Expression<Result<T, U>>, failureMessage: FailureMessage, closure: (Expression<T>, FailureMessage) -> Bool) -> Bool {
-  failureMessage.postfixMessage = "have succeeded"
-  if let result = actualExpression.evaluate() {
-    switch result {
-    case .Success(let box):
-      let successfulExpression = Expression(expression: { box.unbox }, location: actualExpression.location)
-      let matched = closure(successfulExpression, failureMessage)
-      failureMessage.postfixMessage = "have succeeded, and value to \(failureMessage.postfixMessage)"
-      return matched
-    case .Failure:
+private func haveSucceededMatcherFunc<T, U>(matcherClosure: MatcherClosure<T>) -> NonNilMatcherFunc<Result<T, U>> {
+  return NonNilMatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "have succeeded"
+    if let result = actualExpression.evaluate() {
+      switch result {
+      case .Success(let box):
+        let successfulExpression = Expression(expression: { box.unbox }, location: actualExpression.location)
+        let matched = matcherClosure.closure(successfulExpression, failureMessage)
+        failureMessage.to = "for"
+        failureMessage.postfixMessage = "successful value to \(failureMessage.postfixMessage)"
+        return matched!
+      case .Failure:
+        return false
+      }
+    } else {
       return false
     }
-  } else {
-    return false
   }
 }

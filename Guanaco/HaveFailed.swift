@@ -1,37 +1,68 @@
 import Nimble
 import LlamaKit
 
+// MARK: Public
+
 /**
   A Nimble matcher that succeeds when the actual value
-  is a failure result. This matcher can only be used with
-  failures that encapsulate NSError types.
-
-  :param: domain Optionally, the domain of the error. If specified, but
-                 the actual failure error does not match this domain,
-                 this matcher fails.
-  :param: localizedDescription Optionally, the localized description of
-                               the error. If specified, but the actual
-                               failure error does not match this domain,
-                               this matcher fails.
+  is a failed result.
 */
-public func haveFailed<T>(domain: String? = nil, localizedDescription: String? = nil) -> MatcherFunc<Result<T, NSError>> {
-  return MatcherFunc { actualExpression, failureMessage in
+public func haveFailed<T, U>() -> NonNilMatcherFunc<Result<T, U>> {
+  return NonNilMatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have failed"
+    if let result = actualExpression.evaluate() {
+      return !result.isSuccess
+    } else {
+      return false
+    }
+  }
+}
+
+/**
+  A Nimble matcher that succeeds when the actual value
+  is a failed result, and the given matcher matches its failure value.
+
+  :param: matcher The matcher to run against the failure value.
+*/
+public func haveFailed<T, U>(matcher: MatcherFunc<U>) -> NonNilMatcherFunc<Result<T, U>> {
+  return haveFailedMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
+}
+
+/**
+  A Nimble matcher that succeeds when the actual value
+  is a failed result, and the given matcher matches its failure value.
+
+  :param: matcher The matcher to run against the failure value.
+*/
+public func haveFailed<T, U>(matcher: FullMatcherFunc<U>) -> NonNilMatcherFunc<Result<T, U>> {
+  return haveFailedMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
+}
+
+/**
+  A Nimble matcher that succeeds when the actual value
+  is a failed result, and the given matcher matches its failure value.
+
+  :param: matcher The matcher to run against the failure value.
+*/
+public func haveFailed<T, U>(matcher: NonNilMatcherFunc<U>) -> NonNilMatcherFunc<Result<T, U>> {
+  return haveFailedMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
+}
+
+// MARK: Private
+
+private func haveFailedMatcherFunc<T, U>(matcherClosure: MatcherClosure<U>) -> NonNilMatcherFunc<Result<T, U>> {
+  return NonNilMatcherFunc { actualExpression, failureMessage in
+    failureMessage.postfixMessage = "have succeeded"
     if let result = actualExpression.evaluate() {
       switch result {
       case .Success:
         return false
       case .Failure(let error):
-        var allEqualityChecksAreTrue = true
-        if let someDomain = domain {
-          failureMessage.postfixMessage = "\(failureMessage.postfixMessage), with a domain of '\(someDomain)'"
-          allEqualityChecksAreTrue = allEqualityChecksAreTrue && error.unbox.domain == someDomain
-        }
-        if let description = localizedDescription {
-          failureMessage.postfixMessage = "\(failureMessage.postfixMessage), with the description '\(description)'"
-          allEqualityChecksAreTrue = allEqualityChecksAreTrue && error.unbox.localizedDescription == description
-        }
-        return allEqualityChecksAreTrue
+        let failedExpression = Expression(expression: { error.unbox }, location: actualExpression.location)
+        let matched = matcherClosure.closure(failedExpression, failureMessage)
+        failureMessage.to = "for"
+        failureMessage.postfixMessage = "failure value to \(failureMessage.postfixMessage)"
+        return matched!
       }
     } else {
       return false

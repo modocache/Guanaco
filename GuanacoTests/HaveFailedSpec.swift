@@ -6,12 +6,53 @@ import Guanaco
 class HaveFailedSpec: QuickSpec {
   override func spec() {
     describe("haveFailed") {
+      var actual: Result<[Int], NSError>!
+
       context("when the actual value is a success") {
+        beforeEach {
+          actual = success([8, 6, 7, 5, 3, 0, 9])
+        }
+
         it("fails") {
           let message = assertionMessage {
-            expect(success("linkedin for drunk texts")).to(haveFailed())
+            expect(actual).to(haveFailed())
           }
           expect(message).to(match("expected to have failed, got"))
+        }
+      }
+
+      context("when the actual value is a failure") {
+        beforeEach {
+          actual = failure(NSError(
+            domain: "twitter for grammar",
+            code: 8675309,
+            userInfo: [NSLocalizedDescriptionKey: "uber for philosophers"]
+          ))
+        }
+
+        it("doesn't fail") {
+          expect(actual).to(haveFailed())
+        }
+
+        context("and matchers are specified") {
+          it("doesn't fail if the result's error values match") {
+            expect(actual).to(haveFailed(beAnError(
+              domain: equal("twitter for grammar"),
+              code: beGreaterThan(-1),
+              localizedDescription: match("uber")
+            )))
+          }
+
+          it("fails if the result's error values don't match") {
+            let message = assertionMessage {
+              expect(actual).to(haveFailed(beAnError(
+                domain: equal("twitter for grammar"),
+                code: beGreaterThan(-1),
+                localizedDescription: match("techcrunch")
+              )))
+            }
+            expect(message).to(match("expected for failure value to match"))
+          }
         }
       }
     }

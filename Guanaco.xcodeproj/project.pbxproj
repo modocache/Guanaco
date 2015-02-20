@@ -29,6 +29,10 @@
 		DACBD3F21A94404800BA07BE /* Guanaco.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACBD3E61A94404800BA07BE /* Guanaco.framework */; };
 		DACBD4051A94417200BA07BE /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACBD4041A94417200BA07BE /* Nimble.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		DACBD4071A94430F00BA07BE /* LlamaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DACBD4061A94430F00BA07BE /* LlamaKit.framework */; };
+		DAE3CA231A96F80600CAD15A /* MatcherClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE3CA221A96F80600CAD15A /* MatcherClosure.swift */; };
+		DAE3CA241A96F80600CAD15A /* MatcherClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE3CA221A96F80600CAD15A /* MatcherClosure.swift */; };
+		DAE3CA261A96FC5200CAD15A /* BeAnError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE3CA251A96FC5200CAD15A /* BeAnError.swift */; };
+		DAE3CA271A96FC5200CAD15A /* BeAnError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE3CA251A96FC5200CAD15A /* BeAnError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +74,8 @@
 		DACBD3F71A94404800BA07BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DACBD4041A94417200BA07BE /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../External/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
 		DACBD4061A94430F00BA07BE /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = "../External/LlamaKit/build/Debug-iphoneos/LlamaKit.framework"; sourceTree = "<group>"; };
+		DAE3CA221A96F80600CAD15A /* MatcherClosure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatcherClosure.swift; sourceTree = "<group>"; };
+		DAE3CA251A96FC5200CAD15A /* BeAnError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeAnError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +144,10 @@
 			isa = PBXGroup;
 			children = (
 				DACBD3EB1A94404800BA07BE /* Guanaco.h */,
+				DAE3CA221A96F80600CAD15A /* MatcherClosure.swift */,
 				DA5023931A969B0B004175D7 /* HaveSucceeded.swift */,
 				DA5023961A969B9E004175D7 /* HaveFailed.swift */,
+				DAE3CA251A96FC5200CAD15A /* BeAnError.swift */,
 				DACBD3E91A94404800BA07BE /* Supporting Files */,
 			);
 			path = Guanaco;
@@ -347,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE3CA241A96F80600CAD15A /* MatcherClosure.swift in Sources */,
 				DA5023981A969B9E004175D7 /* HaveFailed.swift in Sources */,
+				DAE3CA271A96FC5200CAD15A /* BeAnError.swift in Sources */,
 				DA5023951A969B0B004175D7 /* HaveSucceeded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +376,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE3CA231A96F80600CAD15A /* MatcherClosure.swift in Sources */,
 				DA5023971A969B9E004175D7 /* HaveFailed.swift in Sources */,
+				DAE3CA261A96FC5200CAD15A /* BeAnError.swift in Sources */,
 				DA5023941A969B0B004175D7 /* HaveSucceeded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

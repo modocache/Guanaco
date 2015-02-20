@@ -14,8 +14,17 @@ expect(numbers).to(haveSucceeded(contain(2)))
 ```
 
 ```swift
-let result: Result<String, NSError> = failure("Boo-hoo!")
+let error = NSError(
+  domain: "What happen",
+  code: 10,
+  userInfo: [NSLocalizedDescriptionKey: "Uh-oh!"]
+)
+let result: Result<String, NSError> = failure(error)
 expect(result).to(haveFailed())
-expect(result).to(haveFailed(localizedDescription: "Boo-hoo!"))
+expect(result).to(haveFailed(beAnError(
+  domain: equal("What happen"),
+  code: beGreaterThan(0),
+  localizedDescription: match("!")
+)))
 ```
 
