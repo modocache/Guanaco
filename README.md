@@ -5,26 +5,55 @@
 Nimble matchers for LlamaKit.
 
 ```swift
-let result = success("Huzzah!")
+let result: Result<String, NSError> = success("llama")
 expect(result).to(haveSucceeded())
-expect(result).to(haveSucceeded(equal("Huzzah!")))
-
-let numbers = success([1, 2, 3])
-expect(numbers).to(haveSucceeded(contain(2)))
+expect(result).to(haveSucceeded(equal("llama")))
 ```
 
 ```swift
-let error = NSError(
-  domain: "What happen",
-  code: 10,
-  userInfo: [NSLocalizedDescriptionKey: "Uh-oh!"]
-)
+let error = NSError(domain: "guanaco", code: 10, userInfo: [NSLocalizedDescriptionKey: "lama guanicoe"])
 let result: Result<String, NSError> = failure(error)
 expect(result).to(haveFailed())
 expect(result).to(haveFailed(beAnError(
-  domain: equal("What happen"),
+  domain: equal("guanaco"),
   code: beGreaterThan(0),
-  localizedDescription: match("!")
+  localizedDescription: match("guanicoe")
 )))
+```
+
+## Why Use Guanaco: Testing Algebraic Data Types
+
+Swift makes it easy to define ADTs, or "algebraic data types". The canonical
+example of an algebraic data type is [LlamaKit's](https://github.com/LlamaKit/LlamaKit)
+`Result<ValueType, ErrorType>` enum, which represents the result of some
+operation. When the operation is successful, the `Result` provides a
+value of type `ValueType`. When it is not, it provides a value of type
+`ErrorType`:
+
+```swift
+switch result {
+　case .Success(let value): /* ... */
+　case .Failure(let error): /* ... */
+}
+```
+
+Unfortunately, testing algebraic data types like `Result` can be a pain.
+For example, if you had a result of type `Result<Int, NSError>`, and
+wanted to test that it had a successful value of `10`, you'd have to
+write:
+
+```swift
+switch result {
+　case .Success(let value): XCTAssertEquals(value, 10)
+　case .Failure(let error): XCTFail()
+}
+```
+
+Tests should be clear, consise, and provide useful failure messages--in
+other words, the code above isn't going to cut it! Instead, use Guanaco
+to write:
+
+```swift
+expect(result).to(haveSucceeded(equal(10)))
 ```
 
