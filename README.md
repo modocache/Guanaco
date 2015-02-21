@@ -57,3 +57,21 @@ to write:
 expect(result).to(haveSucceeded(equal(10)))
 ```
 
+## How to Install
+
+### Git Submodules
+
+First, add Guanaco as a Git submodule. From within your Git repository,
+open the command line and run:
+
+```
+$ git submodule add \
+    https://github.com/modocache/Guanaco.git \
+    External/Guanaco # Specify any path you like here
+```
+
+Open the `.xcworkspace` for your project and add `Guanaco.xcodeproj` to
+your workspace. Then, add `Guanaco-OSX.framework` or
+`Guanaco-iOS.framework` to your test target's "Link Binary with
+Libraries" build phase.
+
