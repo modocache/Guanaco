@@ -59,6 +59,16 @@ expect(result).to(haveSucceeded(equal(10)))
 
 ## How to Install
 
+### CocoaPods
+
+```
+# Podfile
+
+pod 'Guanaco', :git => 'https://github.com/modocache/Guanaco.git'
+pod 'LlamaKit', :git => 'https://github.com/LlamaKit/LlamaKit.git',
+                :tag => 'v0.5.0'
+```
+
 ### Git Submodules
 
 First, add Guanaco as a Git submodule. From within your Git repository,
