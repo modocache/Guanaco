@@ -1,6 +1,6 @@
 # Guanaco
 
-[![Build Status](https://travis-ci.org/modocache/Guanaco.svg?branch=master)](https://travis-ci.org/modocache/Guanaco)
+[![Build Status](https://travis-ci.org/modocache/Guanaco.svg?branch=swift-1.1)](https://travis-ci.org/modocache/Guanaco)
 
 Nimble matchers for LlamaKit.
 
