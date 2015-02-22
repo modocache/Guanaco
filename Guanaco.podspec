@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "Guanaco"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
   s.summary = "Nimble matchers for LlamaKit."
   s.description = <<-DESC
                   Testing algebraic data types like `LlamaKit.Result` can be a pain.
