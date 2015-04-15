@@ -1,6 +1,6 @@
 import Quick
 import Nimble
-import LlamaKit
+import Result
 import Guanaco
 
 class HaveFailedSpec: QuickSpec {
@@ -10,7 +10,7 @@ class HaveFailedSpec: QuickSpec {
 
       context("when the actual value is a success") {
         beforeEach {
-          actual = success([8, 6, 7, 5, 3, 0, 9])
+          actual = Result.success([8, 6, 7, 5, 3, 0, 9])
         }
 
         it("fails") {
@@ -23,7 +23,7 @@ class HaveFailedSpec: QuickSpec {
 
       context("when the actual value is a failure") {
         beforeEach {
-          actual = failure(NSError(
+          actual = Result.failure(NSError(
             domain: "twitter for grammar",
             code: 8675309,
             userInfo: [NSLocalizedDescriptionKey: "uber for philosophers"]

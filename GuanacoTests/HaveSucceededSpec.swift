@@ -1,6 +1,6 @@
 import Quick
 import Nimble
-import LlamaKit
+import Result
 import Guanaco
 
 class HaveSucceededSpec: QuickSpec {
@@ -10,7 +10,7 @@ class HaveSucceededSpec: QuickSpec {
 
       context("when the actual value is a failure") {
         beforeEach {
-          actual = failure("snapchat for seniors")
+          actual = Result.failure(NSError(domain: "failure", code: 1, userInfo: nil))
         }
 
         it("fails") {
@@ -32,7 +32,7 @@ class HaveSucceededSpec: QuickSpec {
 
       context("when the actual value is a successful result") {
         beforeEach {
-          actual = success("tumblr for clowns")
+          actual = Result.success("tumblr for clowns")
         }
 
         it("doesn't fail") {
@@ -44,7 +44,7 @@ class HaveSucceededSpec: QuickSpec {
             let message = assertionMessage {
               expect(actual).to(haveSucceeded(equal("seamless for dread")))
             }
-            expect(message).to(equal("expected for successful value to equal <seamless for dread>, got <Success: tumblr for clowns>"))
+            expect(message).to(equal("expected for successful value to equal <seamless for dread>, got <.Success(tumblr for clowns)>"))
           }
 
           it("succeeds if the result's value matches") {
