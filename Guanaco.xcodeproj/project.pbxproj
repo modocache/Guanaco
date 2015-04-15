@@ -425,7 +425,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)/External/Result/build/Debug",
 				);
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -453,7 +452,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(PROJECT_DIR)/External/Result/build/Debug",
 				);
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -603,7 +601,6 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Guanaco-gubvherbhfybamesxgazocjrszub/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -630,7 +627,6 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Guanaco-gubvherbhfybamesxgazocjrszub/Build/Products/Debug",
 				);
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
