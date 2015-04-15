@@ -1,5 +1,5 @@
 import Nimble
-import LlamaKit
+import Result
 
 // MARK: Public
 
@@ -11,7 +11,7 @@ public func haveFailed<T, U>() -> NonNilMatcherFunc<Result<T, U>> {
   return NonNilMatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have failed"
     if let result = actualExpression.evaluate() {
-      return !result.isSuccess
+      return result.error != nil
     } else {
       return false
     }
@@ -54,16 +54,18 @@ private func haveFailedMatcherFunc<T, U>(matcherClosure: MatcherClosure<U>) -> N
   return NonNilMatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have succeeded"
     if let result = actualExpression.evaluate() {
-      switch result {
-      case .Success:
-        return false
-      case .Failure(let error):
-        let failedExpression = Expression(expression: { error.unbox }, location: actualExpression.location)
-        let matched = matcherClosure.closure(failedExpression, failureMessage)
-        failureMessage.to = "for"
-        failureMessage.postfixMessage = "failure value to \(failureMessage.postfixMessage)"
-        return matched!
-      }
+      return result.analysis(
+        ifSuccess: { value in
+          return false
+        },
+        ifFailure: { error in
+          let failedExpression = Expression(expression: { error }, location: actualExpression.location)
+          let matched = matcherClosure.closure(failedExpression, failureMessage)
+          failureMessage.to = "for"
+          failureMessage.postfixMessage = "failure value to \(failureMessage.postfixMessage)"
+          return matched!
+        }
+      )
     } else {
       return false
     }
