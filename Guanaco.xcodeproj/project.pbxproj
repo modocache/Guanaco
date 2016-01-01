@@ -293,7 +293,8 @@
 		DACBD3DD1A94404800BA07BE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				TargetAttributes = {
 					DACBD3E51A94404800BA07BE = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -433,6 +434,7 @@
 					"-framework",
 					XCTest,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -460,6 +462,7 @@
 					"-framework",
 					XCTest,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -482,6 +485,7 @@
 				);
 				INFOPLIST_FILE = GuanacoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GuanacoTests;
 				SDKROOT = macosx;
 			};
@@ -499,6 +503,7 @@
 				);
 				INFOPLIST_FILE = GuanacoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GuanacoTests;
 				SDKROOT = macosx;
 			};
@@ -525,6 +530,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -609,6 +615,7 @@
 					"-framework",
 					XCTest,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -635,6 +642,7 @@
 					"-framework",
 					XCTest,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 				SKIP_INSTALL = YES;
 			};
@@ -653,6 +661,7 @@
 				);
 				INFOPLIST_FILE = GuanacoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GuanacoTests;
 			};
 			name = Debug;
@@ -666,6 +675,7 @@
 				);
 				INFOPLIST_FILE = GuanacoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GuanacoTests;
 			};
 			name = Release;
