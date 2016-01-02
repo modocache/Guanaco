@@ -17,7 +17,7 @@ class HaveFailedSpec: QuickSpec {
           let message = assertionMessage {
             expect(actual).to(haveFailed())
           }
-          expect(message).to(match("expected to have failed, got"))
+          expect(message).to(match("expected to have failed"))
         }
       }
 
@@ -55,6 +55,30 @@ class HaveFailedSpec: QuickSpec {
           }
         }
       }
+      
+      context("when the expression throws error") {
+        it("doesn't fail") {
+          let actual: () throws -> Result<Any, NSError> = {
+            
+            throw NSError(
+              domain: "twitter for grammar",
+              code: 8675309,
+              userInfo: [NSLocalizedDescriptionKey: "uber for philosophers"]
+              )
+          }
+          
+          expect(expression:actual).to(haveFailed())
+        }
+      }
+        it("fail if the error thrown is of different type to the result's type") {
+          enum Error : ErrorType { case Unknown }
+
+          let actual: () throws -> Result<Any, NSError> = {
+            throw Error.Unknown
+          }
+          
+          expect(expression:actual).toNot(haveFailed())
+        }
     }
   }
 }
