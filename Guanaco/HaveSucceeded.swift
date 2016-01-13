@@ -10,9 +10,20 @@ import Result
 public func haveSucceeded<T, U>() -> NonNilMatcherFunc<Result<T, U>> {
   return NonNilMatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have succeeded"
-    if let result = actualExpression.evaluate() {
-      return result.value != nil
-    } else {
+    do {
+      if let result = try actualExpression.evaluate(){
+        return result.analysis(
+          ifSuccess: { value in
+            return true
+          },
+          ifFailure: { error in
+            return false
+          }
+        )
+      } else {
+        return false
+      }
+    } catch {
       return false
     }
   }
@@ -25,7 +36,7 @@ public func haveSucceeded<T, U>() -> NonNilMatcherFunc<Result<T, U>> {
   :param: matcher The matcher to run against the successful value.
 */
 public func haveSucceeded<T, U>(matcher: MatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
-  return haveSucceededMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
+  return haveSucceededMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
 
 /**
@@ -35,7 +46,7 @@ public func haveSucceeded<T, U>(matcher: MatcherFunc<T>) -> NonNilMatcherFunc<Re
   :param: matcher The matcher to run against the successful value.
 */
 public func haveSucceeded<T, U>(matcher: FullMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
-  return haveSucceededMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
+  return haveSucceededMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
 
 /**
@@ -45,7 +56,7 @@ public func haveSucceeded<T, U>(matcher: FullMatcherFunc<T>) -> NonNilMatcherFun
   :param: matcher The matcher to run against the successful value.
 */
 public func haveSucceeded<T, U>(matcher: NonNilMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
-  return haveSucceededMatcherFunc(MatcherClosure { matcher.matches($0, failureMessage: $1) })
+  return haveSucceededMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
 
 // MARK: Private
@@ -53,20 +64,30 @@ public func haveSucceeded<T, U>(matcher: NonNilMatcherFunc<T>) -> NonNilMatcherF
 private func haveSucceededMatcherFunc<T, U>(matcherClosure: MatcherClosure<T>) -> NonNilMatcherFunc<Result<T, U>> {
   return NonNilMatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have succeeded"
-    if let result = actualExpression.evaluate() {
-      return result.analysis(
-        ifSuccess: { value in
-          let successfulExpression = Expression(expression: { value }, location: actualExpression.location)
-          let matched = matcherClosure.closure(successfulExpression, failureMessage)
-          failureMessage.to = "for"
-          failureMessage.postfixMessage = "successful value to \(failureMessage.postfixMessage)"
-          return matched!
-        },
-        ifFailure: { error in
+    do {
+        if let result = try actualExpression.evaluate() {
+        return result.analysis(
+            ifSuccess: { value in
+                do {
+                  let successfulExpression = Expression(expression: { value }, location: actualExpression.location)
+                  let matched = try matcherClosure.closure(successfulExpression, failureMessage)
+                  failureMessage.to = "for"
+                  failureMessage.postfixMessage = "successful value to \(failureMessage.postfixMessage)"
+                  return matched!
+                }
+                catch{
+                return false
+                }
+            },
+            ifFailure: { error in
+                return false
+            }
+        )
+        }
+        else {
             return false
         }
-      )
-    } else {
+    } catch {
       return false
     }
   }

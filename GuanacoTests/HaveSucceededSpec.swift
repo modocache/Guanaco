@@ -10,7 +10,7 @@ class HaveSucceededSpec: QuickSpec {
 
       context("when the actual value is a failure") {
         beforeEach {
-          actual = Result.failure(NSError(domain: "failure", code: 1, userInfo: nil))
+          actual = Result.Failure(NSError(domain: "failure", code: 1, userInfo: nil))
         }
 
         it("fails") {
@@ -32,7 +32,7 @@ class HaveSucceededSpec: QuickSpec {
 
       context("when the actual value is a successful result") {
         beforeEach {
-          actual = Result.success("tumblr for clowns")
+          actual = Result.Success("tumblr for clowns")
         }
 
         it("doesn't fail") {
