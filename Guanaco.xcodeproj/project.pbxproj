@@ -65,9 +65,7 @@
 		DA5914441A944C9B00AED74C /* Guanaco.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Guanaco.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5914551A944CA900AED74C /* GuanacoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuanacoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5914571A944CF100AED74C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = ../External/Nimble/build/Debug/Nimble.framework; sourceTree = "<group>"; };
-		DA5914591A944CF400AED74C /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = ../External/LlamaKit/build/Debug/LlamaKit.framework; sourceTree = "<group>"; };
 		DA59145D1A944D7200AED74C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = ../External/Nimble/build/Debug/Nimble.framework; sourceTree = "<group>"; };
-		DA59145F1A944ED700AED74C /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Guanaco-arlsxeqrahiqagdafwumtpvcbvkl/Build/Products/Debug-iphoneos/LlamaKit.framework"; sourceTree = "<group>"; };
 		DA5914611A944EDC00AED74C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Guanaco-arlsxeqrahiqagdafwumtpvcbvkl/Build/Products/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
 		DACBD3E61A94404800BA07BE /* Guanaco.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Guanaco.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACBD3EA1A94404800BA07BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 		DACBD3F11A94404800BA07BE /* GuanacoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuanacoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACBD3F71A94404800BA07BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DACBD4041A94417200BA07BE /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../External/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
-		DACBD4061A94430F00BA07BE /* LlamaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LlamaKit.framework; path = "../External/LlamaKit/build/Debug-iphoneos/LlamaKit.framework"; sourceTree = "<group>"; };
 		DAE3CA221A96F80600CAD15A /* MatcherClosure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatcherClosure.swift; sourceTree = "<group>"; };
 		DAE3CA251A96FC5200CAD15A /* BeAnError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeAnError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,11 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				DA5914611A944EDC00AED74C /* Nimble.framework */,
-				DA59145F1A944ED700AED74C /* LlamaKit.framework */,
 				DA59145D1A944D7200AED74C /* Nimble.framework */,
-				DA5914591A944CF400AED74C /* LlamaKit.framework */,
 				DA5914571A944CF100AED74C /* Nimble.framework */,
-				DACBD4061A94430F00BA07BE /* LlamaKit.framework */,
 				DACBD4041A94417200BA07BE /* Nimble.framework */,
 				DACBD3EA1A94404800BA07BE /* Info.plist */,
 			);
