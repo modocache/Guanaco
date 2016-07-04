@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/modocache/Guanaco.svg?branch=swift-1.1)](https://travis-ci.org/modocache/Guanaco)
 
-Nimble matchers for LlamaKit.
+Nimble matchers for Result.
 
 ```swift
 let result: Result<String, NSError> = success("llama")
@@ -24,7 +24,7 @@ expect(result).to(haveFailed(beAnError(
 ## Why Use Guanaco: Testing Algebraic Data Types
 
 Swift makes it easy to define ADTs, or "algebraic data types". The canonical
-example of an algebraic data type is [LlamaKit's](https://github.com/LlamaKit/LlamaKit)
+example of an algebraic data type is [Result](https://github.com/antitypical/Result)
 `Result<ValueType, ErrorType>` enum, which represents the result of some
 operation. When the operation is successful, the `Result` provides a
 value of type `ValueType`. When it is not, it provides a value of type
@@ -65,8 +65,6 @@ expect(result).to(haveSucceeded(equal(10)))
 # Podfile
 
 pod 'Guanaco', :git => 'https://github.com/modocache/Guanaco.git'
-pod 'LlamaKit', :git => 'https://github.com/LlamaKit/LlamaKit.git',
-                :tag => 'v0.5.0'
 ```
 
 ### Git Submodules
