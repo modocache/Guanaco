@@ -48,16 +48,6 @@ public func haveFailed<T, U>(matcher: MatcherFunc<U>) -> MatcherFunc<Result<T, U
 
   :param: matcher The matcher to run against the failure value.
 */
-public func haveFailed<T, U>(matcher: FullMatcherFunc<U>) -> MatcherFunc<Result<T, U>> {
-  return haveFailedMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
-}
-
-/**
-  A Nimble matcher that succeeds when the actual value
-  is a failed result, and the given matcher matches its failure value.
-
-  :param: matcher The matcher to run against the failure value.
-*/
 public func haveFailed<T, U>(matcher: NonNilMatcherFunc<U>) -> MatcherFunc<Result<T, U>> {
   return haveFailedMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }

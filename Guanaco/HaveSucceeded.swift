@@ -45,16 +45,6 @@ public func haveSucceeded<T, U>(matcher: MatcherFunc<T>) -> NonNilMatcherFunc<Re
 
   :param: matcher The matcher to run against the successful value.
 */
-public func haveSucceeded<T, U>(matcher: FullMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
-  return haveSucceededMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
-}
-
-/**
-  A Nimble matcher that succeeds when the actual value
-  is a successful result, and the given matcher matches its value.
-
-  :param: matcher The matcher to run against the successful value.
-*/
 public func haveSucceeded<T, U>(matcher: NonNilMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
   return haveSucceededMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
