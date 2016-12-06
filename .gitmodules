@@ -1,9 +1,9 @@
-[submodule "External/Nimble"]
-	path = External/Nimble
+[submodule "Carthage/Checkouts/Nimble"]
+	path = Carthage/Checkouts/Nimble
 	url = https://github.com/Quick/Nimble.git
-[submodule "External/Quick"]
-	path = External/Quick
+[submodule "Carthage/Checkouts/Quick"]
+	path = Carthage/Checkouts/Quick
 	url = https://github.com/Quick/Quick.git
-[submodule "External/Result"]
-	path = External/Result
-	url = https://github.com/antitypical/Result
+[submodule "Carthage/Checkouts/Result"]
+	path = Carthage/Checkouts/Result
+	url = https://github.com/antitypical/Result.git
