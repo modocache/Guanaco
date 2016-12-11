@@ -2,24 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:External/Result/Carthage/Checkouts/Box/Box.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:External/Result/Carthage/Checkouts/Either/Either.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:External/Result/Carthage/Checkouts/Prelude/Prelude.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:External/Result/Result.xcodeproj">
+      location = "group:Carthage/Checkouts/Result/Result.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Guanaco.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:External/Nimble/Nimble.xcodeproj">
+      location = "group:Carthage/Checkouts/Nimble/Nimble.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:External/Quick/Quick.xcodeproj">
+      location = "group:Carthage/Checkouts/Quick/Quick.xcodeproj">
    </FileRef>
 </Workspace>
