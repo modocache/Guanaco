@@ -487,10 +487,6 @@
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					XCTest,
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 			};
@@ -510,10 +506,6 @@
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					XCTest,
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 			};
@@ -580,10 +572,6 @@
 				);
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					XCTest,
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 			};
@@ -602,10 +590,6 @@
 				);
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					XCTest,
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
 			};
