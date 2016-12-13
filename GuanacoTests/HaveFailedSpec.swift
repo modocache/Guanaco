@@ -10,7 +10,7 @@ class HaveFailedSpec: QuickSpec {
 
       context("when the actual value is a success") {
         beforeEach {
-          actual = Result.Success([8, 6, 7, 5, 3, 0, 9])
+          actual = Result.success([8, 6, 7, 5, 3, 0, 9])
         }
 
         it("fails") {
@@ -23,7 +23,7 @@ class HaveFailedSpec: QuickSpec {
 
       context("when the actual value is a failure") {
         beforeEach {
-          actual = Result.Failure(NSError(
+          actual = Result.failure(NSError(
             domain: "twitter for grammar",
             code: 8675309,
             userInfo: [NSLocalizedDescriptionKey: "uber for philosophers"]
@@ -71,7 +71,7 @@ class HaveFailedSpec: QuickSpec {
         }
       }
         it("fail if the error thrown is of different type to the result's type") {
-          enum Error : ErrorType { case Unknown }
+          enum Error : Swift.Error { case Unknown }
 
           let actual: () throws -> Result<Any, NSError> = {
             throw Error.Unknown

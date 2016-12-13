@@ -15,7 +15,7 @@ import Nimble
                                localized description. If nil, no assertion
                                is made.
 */
-public func beAnError(domain domain: NonNilMatcherFunc<String>? = nil, code: NonNilMatcherFunc<Int>? = nil, localizedDescription: NonNilMatcherFunc<String>? = nil) -> NonNilMatcherFunc<NSError> {
+public func beAnError(domain: NonNilMatcherFunc<String>? = nil, code: NonNilMatcherFunc<Int>? = nil, localizedDescription: NonNilMatcherFunc<String>? = nil) -> NonNilMatcherFunc<NSError> {
   return beAnErrorMatcherFunc(
     domain: MatcherClosure { try domain?.matches($0, failureMessage: $1) },
     code: MatcherClosure { try code?.matches($0, failureMessage: $1) },
@@ -25,7 +25,7 @@ public func beAnError(domain domain: NonNilMatcherFunc<String>? = nil, code: Non
 
 // MARK: Private
 
-private func beAnErrorMatcherFunc(domain domain: MatcherClosure<String>? = nil, code: MatcherClosure<Int>? = nil, localizedDescription: MatcherClosure<String>? = nil) -> NonNilMatcherFunc<NSError> {
+private func beAnErrorMatcherFunc(domain: MatcherClosure<String>? = nil, code: MatcherClosure<Int>? = nil, localizedDescription: MatcherClosure<String>? = nil) -> NonNilMatcherFunc<NSError> {
   return NonNilMatcherFunc { actualExpression, failureMessage in
     
     guard let error = try actualExpression.evaluate() else {

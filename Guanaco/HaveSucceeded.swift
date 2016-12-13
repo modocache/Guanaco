@@ -35,7 +35,7 @@ public func haveSucceeded<T, U>() -> NonNilMatcherFunc<Result<T, U>> {
 
   :param: matcher The matcher to run against the successful value.
 */
-public func haveSucceeded<T, U>(matcher: MatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
+public func haveSucceeded<T, U>(_ matcher: MatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
   return haveSucceededMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
 
@@ -45,13 +45,13 @@ public func haveSucceeded<T, U>(matcher: MatcherFunc<T>) -> NonNilMatcherFunc<Re
 
   :param: matcher The matcher to run against the successful value.
 */
-public func haveSucceeded<T, U>(matcher: NonNilMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
+public func haveSucceeded<T, U>(_ matcher: NonNilMatcherFunc<T>) -> NonNilMatcherFunc<Result<T, U>> {
   return haveSucceededMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
 
 // MARK: Private
 
-private func haveSucceededMatcherFunc<T, U>(matcherClosure: MatcherClosure<T>) -> NonNilMatcherFunc<Result<T, U>> {
+private func haveSucceededMatcherFunc<T, U>(_ matcherClosure: MatcherClosure<T>) -> NonNilMatcherFunc<Result<T, U>> {
   return NonNilMatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have succeeded"
     do {
