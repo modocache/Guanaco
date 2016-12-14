@@ -1,1 +1,2 @@
+github "jspahrsummers/xcconfigs" >= 0.10
 github "Quick/Quick" ~> 0.9.3
