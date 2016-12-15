@@ -24,7 +24,7 @@ public func haveFailed<T, U>() -> MatcherFunc<Result<T, U>> {
       } else {
         return false
       }
-    } catch let error where error.dynamicType == U.self {
+    } catch let error where type(of: error) == U.self {
       return true
     } catch {
       return false
@@ -38,7 +38,7 @@ public func haveFailed<T, U>() -> MatcherFunc<Result<T, U>> {
 
   :param: matcher The matcher to run against the failure value.
 */
-public func haveFailed<T, U>(matcher: MatcherFunc<U>) -> MatcherFunc<Result<T, U>> {
+public func haveFailed<T, U>(_ matcher: MatcherFunc<U>) -> MatcherFunc<Result<T, U>> {
   return haveFailedMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
 
@@ -48,17 +48,17 @@ public func haveFailed<T, U>(matcher: MatcherFunc<U>) -> MatcherFunc<Result<T, U
 
   :param: matcher The matcher to run against the failure value.
 */
-public func haveFailed<T, U>(matcher: NonNilMatcherFunc<U>) -> MatcherFunc<Result<T, U>> {
+public func haveFailed<T, U>(_ matcher: NonNilMatcherFunc<U>) -> MatcherFunc<Result<T, U>> {
   return haveFailedMatcherFunc(MatcherClosure { try matcher.matches($0, failureMessage: $1) })
 }
 
 // MARK: Private
 
-private func haveFailedMatcherFunc<T, U>(matcherClosure: MatcherClosure<U>) -> MatcherFunc<Result<T, U>> {
+private func haveFailedMatcherFunc<T, U>(_ matcherClosure: MatcherClosure<U>) -> MatcherFunc<Result<T, U>> {
   return MatcherFunc { actualExpression, failureMessage in
     failureMessage.postfixMessage = "have succeeded"
     
-    let errorClosure: (error: U) -> Bool = { error in
+    let errorClosure: (_ error: U) -> Bool = { error in
         do {
           let failedExpression = Expression(expression: { error }, location: actualExpression.location)
           let matched = try matcherClosure.closure(failedExpression, failureMessage)
@@ -83,7 +83,7 @@ private func haveFailedMatcherFunc<T, U>(matcherClosure: MatcherClosure<U>) -> M
       return false
     }
     catch let error as U {
-      return errorClosure(error: error)
+      return errorClosure(error)
     }
   }
 }
