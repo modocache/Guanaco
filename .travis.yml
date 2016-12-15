@@ -5,6 +5,12 @@ matrix:
     - osx_image: xcode8.1
     - osx_image: xcode8.2
 
+# Create a new simulator device and reference it by id to avoid the following errors: 
+# "The requested device could not be found because no available devices matched the request."
+# "The requested device could not be found because multiple devices matched the request."
+before_script:
+  - "destination_id=$(xcrun simctl create Travis com.apple.CoreSimulator.SimDeviceType.iPhone-7 com.apple.CoreSimulator.SimRuntime.iOS-10-1)"
+
 script:
-  - "xcodebuild -workspace Guanaco.xcworkspace -scheme Guanaco-iOS -sdk iphonesimulator -destination \"platform=iOS Simulator,name=iPhone 6\" test"
+  - "xcodebuild -workspace Guanaco.xcworkspace -scheme Guanaco-iOS -sdk iphonesimulator -destination \"id=$destination_id\" test"
   - "xcodebuild -workspace Guanaco.xcworkspace -scheme Guanaco-OSX test"
