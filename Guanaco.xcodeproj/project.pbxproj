@@ -552,6 +552,7 @@
 			baseConfigurationReference = C92C09681DFFB92C00233A4A /* iOS-Framework.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -559,6 +560,8 @@
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Debug;
 		};
@@ -567,6 +570,7 @@
 			baseConfigurationReference = C92C09681DFFB92C00233A4A /* iOS-Framework.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -574,6 +578,8 @@
 				INFOPLIST_FILE = Guanaco/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Guanaco;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Release;
 		};
@@ -584,6 +590,7 @@
 				INFOPLIST_FILE = GuanacoTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GuanacoTests;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -594,6 +601,7 @@
 				INFOPLIST_FILE = GuanacoTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.modocache.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GuanacoTests;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
