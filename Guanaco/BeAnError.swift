@@ -15,7 +15,7 @@ import Nimble
                                localized description. If nil, no assertion
                                is made.
 */
-public func beAnError(domain: NonNilMatcherFunc<String>? = nil, code: NonNilMatcherFunc<Int>? = nil, localizedDescription: NonNilMatcherFunc<String>? = nil) -> NonNilMatcherFunc<NSError> {
+public func beAnError(domain: Predicate<String>? = nil, code: Predicate<Int>? = nil, localizedDescription: Predicate<String>? = nil) -> Predicate<NSError> {
   return beAnErrorMatcherFunc(
     domain: MatcherClosure { try domain?.matches($0, failureMessage: $1) },
     code: MatcherClosure { try code?.matches($0, failureMessage: $1) },
@@ -25,33 +25,36 @@ public func beAnError(domain: NonNilMatcherFunc<String>? = nil, code: NonNilMatc
 
 // MARK: Private
 
-private func beAnErrorMatcherFunc(domain: MatcherClosure<String>? = nil, code: MatcherClosure<Int>? = nil, localizedDescription: MatcherClosure<String>? = nil) -> NonNilMatcherFunc<NSError> {
-  return NonNilMatcherFunc { actualExpression, failureMessage in
-    
-    guard let error = try actualExpression.evaluate() else {
-        return false
+private func beAnErrorMatcherFunc(domain: MatcherClosure<String>? = nil, code: MatcherClosure<Int>? = nil, localizedDescription: MatcherClosure<String>? = nil) -> Predicate<NSError> {
+  return Predicate{ (actual) throws -> PredicateResult in
+    let message = ExpectationMessage.expectedActualValueTo("equal <\(actual)>")
+    guard let error = try actual.evaluate() else {
+      return PredicateResult(
+        status: .fail,
+        message: message.appendedBeNilHint()
+      )
     }
     
     var allEqualityChecksAreTrue = true
     if let domainMatcherClosure = domain {
-        let domainExpression = Expression(expression: { error.domain }, location: actualExpression.location)
-        if let match = try domainMatcherClosure.closure(domainExpression, failureMessage) {
+        let domainExpression = Expression(expression: { error.domain }, location: actual.location)
+      if let match = try domainMatcherClosure.closure(domainExpression, FailureMessage.init(stringValue: message.expectedMessage)) {
             allEqualityChecksAreTrue = allEqualityChecksAreTrue && match
         }
     }
     if let codeMatcherClosure = code {
-        let codeExpression = Expression(expression: { error.code }, location: actualExpression.location)
-        if let match = try codeMatcherClosure.closure(codeExpression, failureMessage) {
+        let codeExpression = Expression(expression: { error.code }, location: actual.location)
+        if let match = try codeMatcherClosure.closure(codeExpression, FailureMessage.init(stringValue: message.expectedMessage)) {
             allEqualityChecksAreTrue = allEqualityChecksAreTrue && match
         }
     }
     if let descriptionMatcherClosure = localizedDescription {
-        let descriptionExpression = Expression(expression: { error.localizedDescription }, location: actualExpression.location)
-        if let match = try descriptionMatcherClosure.closure(descriptionExpression, failureMessage) {
+        let descriptionExpression = Expression(expression: { error.localizedDescription }, location: actual.location)
+        if let match = try descriptionMatcherClosure.closure(descriptionExpression, FailureMessage.init(stringValue: message.expectedMessage)) {
             allEqualityChecksAreTrue = allEqualityChecksAreTrue && match
         }
     }
-    return allEqualityChecksAreTrue
+    return PredicateResult(bool: allEqualityChecksAreTrue, message: message)
 
     }
 }
