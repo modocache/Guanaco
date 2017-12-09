@@ -44,7 +44,7 @@ class HaveSucceededSpec: QuickSpec {
             let message = assertionMessage {
               expect(actual).to(haveSucceeded(equal("seamless for dread")))
             }
-            expect(message).to(equal("expected for successful value to equal <seamless for dread>, got <.success(tumblr for clowns)>"))
+            expect(message).to(match("expected to have succeeded"))
           }
 
           it("succeeds if the result's value matches") {

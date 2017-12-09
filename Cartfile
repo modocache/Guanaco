@@ -1,2 +1,2 @@
 github "antitypical/Result" ~> 3.0.0
-github "Quick/Nimble" ~> 5.0.0
+github "Quick/Nimble" ~> 7.0.0
