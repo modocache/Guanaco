@@ -60,7 +60,7 @@ public func haveFailed<T, U>(_ matcher: Predicate<U>) -> Predicate<Result<T, U>>
 
 private func haveFailedMatcherFunc<T, U>(_ matcherClosure: MatcherClosure<U>) -> Predicate<Result<T, U>> {
   return Predicate { actualExpression in
-    let message = ExpectationMessage.expectedActualValueTo("have succeeded")
+    let message = ExpectationMessage.expectedActualValueTo("expected for failure value to match")
     
     let errorClosure: (_ error: U) -> PredicateResult = { error in
         do {
